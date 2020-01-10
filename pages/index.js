@@ -1,10 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import fetch from 'isomorphic-unfetch';
 
 import Layout from '../components/Layout';
 import ToDoItem from '../components/ToDoItem';
 
 export default function Index(props) {
+  fetch('http://localhost:3001/api/randomQuote')
+    .then(response => response.json())
+    .then(json => {
+      console.log(json);
+    });
   const items = props.todos.map(todo => {
     return <ToDoItem key={todo.id} data={todo} />;
   });
