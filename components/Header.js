@@ -10,6 +10,9 @@ export default function Header() {
       <Link href="/about">
         <a>About</a>
       </Link>
+      <Link href="/detail/1">
+        <a>Detail 1</a>
+      </Link>
       <style jsx>{`
         .header {
           display: flex;

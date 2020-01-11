@@ -6,11 +6,7 @@ import Layout from '../components/Layout';
 import ToDoItem from '../components/ToDoItem';
 
 export default function Index(props) {
-  fetch('http://localhost:3001/api/randomQuote')
-    .then(response => response.json())
-    .then(json => {
-      console.log(json);
-    });
+  console.log(props);
   const items = props.todos.map(todo => {
     return <ToDoItem key={todo.id} data={todo} />;
   });
@@ -31,7 +27,13 @@ export default function Index(props) {
   return <Layout content={content} />;
 }
 
-Index.getInitialProps = () => {
+Index.getInitialProps = async () => {
+  const response = await fetch('http://localhost:3001/api/apollo', {
+    method: 'POST',
+    headers: { 'Content-type': 'application/json' },
+    body: JSON.stringify({ query: '{ users { name } }' })
+  });
+  const users = await response.json();
   return {
     todos: [
       {
@@ -49,10 +51,12 @@ Index.getInitialProps = () => {
         text: 'テキスト3',
         isComplete: false
       }
-    ]
+    ],
+    users
   };
 };
 
 Index.propTypes = {
-  todos: PropTypes.array.isRequired
+  todos: PropTypes.array.isRequired,
+  users: PropTypes.object
 };
