@@ -11,6 +11,7 @@
   "author": "YukiEndo",
   "license": "MIT",
   "dependencies": {
+    "@apollo/client": "^3.0.0-beta.20",
     "apollo-server-micro": "^2.9.16",
     "graphql": "^14.5.8",
     "isomorphic-unfetch": "^3.0.0",
