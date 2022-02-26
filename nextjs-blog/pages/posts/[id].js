@@ -15,6 +15,19 @@ export async function getStaticProps({ params }) {
 
 export async function getStaticPaths() {
   const paths = getAllPostIds();
+  // paths
+  // [
+  //   {
+  //     params: {
+  //       id: 'pre-rendering'
+  //     }
+  //   },
+  //   {
+  //     params: {
+  //       id: 'ssg-ssr'
+  //     }
+  //   }
+  // ]
   return {
     paths,
     fallback: false,
